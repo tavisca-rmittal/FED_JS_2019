@@ -2,6 +2,7 @@ header {
     font-size: 40px;
     padding: 20px 0px;
     text-align: center;
+    background-color: antiquewhite;
 }
 
 body {
@@ -63,6 +64,7 @@ div #search-box {
 div #showing-search-list {
     z-index: 99;
     width: 171px;
+    position: relative;
 }
 
 footer {
@@ -71,4 +73,10 @@ footer {
     bottom: 0px;
     text-align: center;
     width: 100%;
+    background-color: antiquewhite;
+}
+
+table {
+    width: 80%;
+    margin-top: 30px;
 }

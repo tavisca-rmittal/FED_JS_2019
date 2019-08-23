@@ -6,14 +6,29 @@ window.onload = function() {
 };
 
 function ShowList() {
-    for (let showListIndex = 0; showListIndex < AutopopulateData.length; ++showListIndex) {
-        let node = document.createElement("li");
-        let textnode = document.createTextNode(
-            AutopopulateData[showListIndex].title
-        );
-        node.appendChild(textnode);
-        document.getElementById("showing-autopopulate-list").appendChild(node);
+    // for (let showListIndex = 0; showListIndex < AutopopulateData.length; ++showListIndex) {
+    //     let node = document.createElement("li");
+    //     let textnode = document.createTextNode(
+    //         AutopopulateData[showListIndex].title
+    //     );
+    //     node.appendChild(textnode);
+    //     document.getElementById("showing-autopopulate-list").appendChild(node);
+    // }
+
+    let html = `<table><tr>`;
+    for (let index = 0; index < AutopopulateData.length; index++) {
+        html += `
+        <td id="${index}">${AutopopulateData[index]}</td>
+        <td id="btn${index}">
+		<button type="button" onclick="EditItemInList(this)" class=${index}>EDIT</button>
+		<button type="button" onclick="DeleteItemInList(this)" class=${index}>DELETE</button>
+        </td>
+        `;
+        html += "</tr><tr>";
     }
+    html += "</tr></table>";
+    document.getElementById("showing-autopopulate-list").innerHTML = html;
+    ClearSearch();
 
 }
 
@@ -30,14 +45,18 @@ function ShowAndHideFunction(requiredId = "home-section") {
 //adding the searching input in a list...
 function AddItem() {
     let input = document.getElementById("myInputSearch");
-    let node = document.createElement("li");
-    let nodeItem = document.createTextNode(input.value);
-    node.appendChild(nodeItem);
-    document.getElementById("showing-autopopulate-list").appendChild(node);
-    //finally added into autopopulating list
-    AutopopulateData.push({
-        "title": input.value
-    });
+    let textInSearchBox = input.value;
+    // console.log();
+    // node.appendChild(nodeItem);
+    // document.getElementById("showing-autopopulate-list").appendChild(node);
+    // //finally added into autopopulating list
+    // AutopopulateData.push({
+    //     "title": input.value
+    // });
+
+    if (!AutopopulateData.includes(textInSearchBox) && textInSearchBox != "")
+        AutopopulateData.push(textInSearchBox);
+    ShowList();
     ClearSearch();
 }
 
@@ -77,7 +96,7 @@ function SearchingTheItem() {
     let input = document.getElementById("myInputSearch");
     let searchResults = [];
     for (let index = 0; index < AutopopulateData.length; ++index) {
-        let searchResultValue = AutopopulateData[index].title.search(input.value);
+        let searchResultValue = AutopopulateData[index].search(input.value);
         if (searchResultValue > 0) {
             searchResults.push(AutopopulateData[index]);
         }
@@ -102,4 +121,75 @@ function ShowClickerMenuOption(event) {
     event = event || window.event;
     let target = event.target || event.srcElement;
     ShowHiddenFunction(target.id + "-section");
+}
+
+function DeleteItemInList(el) {
+    AutopopulateData.splice(Number(el.className), 1);
+    ShowList();
+}
+
+function EditItemInList(el) {
+    let tableCell = document.getElementById(el.className);
+    let tableButton = document.getElementById("btn" + el.className);
+    let inputUpdateBtn = document.createElement('button');
+    let inputCancelBtn = document.createElement('button');
+    inputUpdateBtn.setAttribute('onclick', 'UpdateList(' + el.className + ')');
+    inputCancelBtn.setAttribute('onclick', 'CancelUpdate(' + el.className + ')');
+    inputCancelBtn.id = "cancel";
+    inputUpdateBtn.id = "update";
+    inputUpdateBtn.innerHTML = "UPDATE";
+    inputCancelBtn.innerHTML = "CANCEL";
+    tableButton.innerHTML = '';
+    tableButton.appendChild(inputUpdateBtn);
+    tableButton.appendChild(inputCancelBtn);
+    let input = document.createElement('input');
+    input.type = "text";
+    input.value = tableCell.textContent;
+    input.className = "changeListItem" + el.className;
+    tableCell.innerHTML = '';
+    tableCell.appendChild(input);
+    input.focus();
+}
+
+function UpdateList(index) {
+    let classValue = "changeListItem" + index;
+    let itemListValue = document.getElementsByClassName(classValue)[0].value;
+    if (SearchInList(itemListValue, index)) {
+        AutopopulateData[index] = itemListValue;
+        let tableCell = document.getElementById(index);
+        tableCell.innerHTML = '';
+        let html = `<td id="${index}">${AutopopulateData[index]}</td>`;
+        tableCell.innerHTML = html;
+        let buttonCell = document.getElementById("btn" + index);
+        buttonCell.innerHTML = '';
+        html = `<td id="btn${index}">
+		<button type="button" onclick="EditItemInList(this)" class=${index}>EDIT</button>
+		<button type="button" onclick="DeleteItemInList(this)" class=${index}>DELETE</button>
+		</td>`;
+        buttonCell.innerHTML = html;
+    }
+}
+
+function CancelUpdate(index) {
+    let classValue = "changeListItem" + index;
+    let tableCell = document.getElementById(index);
+    tableCell.innerHTML = '';
+    let html = `<td id="${index}">${AutopopulateData[index]}</td>`;
+    tableCell.innerHTML = html;
+    let buttonCell = document.getElementById("btn" + index);
+    buttonCell.innerHTML = '';
+    html = `<td id="btn${index}">
+	<button type="button" onclick="EditItemInList(this)" class=${index}>EDIT</button>
+	<button type="button" onclick="DeleteItemInList(this)" class=${index}>DELETE</button>
+	</td>`;
+    buttonCell.innerHTML = html;
+}
+
+function SearchInList(itemListValue, dataIndex) {
+    for (let index = 0; index < AutopopulateData.length; index++) {
+        if (AutopopulateData[index] == itemListValue && index != Number(dataIndex)) {
+            return false;
+        }
+    }
+    return true;
 }
