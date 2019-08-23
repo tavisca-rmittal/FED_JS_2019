@@ -8,15 +8,11 @@ header {
 body {
     display: block;
     margin: 0px;
-}
-
-div {
-    /*border: 1px solid #000000;*/
-    height: 100%;
+    background: #ffffff;
 }
 
 div #container {
-    height: 300px;
+    height: 500px;
 }
 
 div #menu {
@@ -36,6 +32,7 @@ div.menu-item {
     width: 70%;
     box-sizing: border-box;
     height: 100%;
+    /*background-color: #eeeeee;*/
 }
 
 ul {
@@ -57,14 +54,17 @@ li:hover {
     color: #ffffff;
 }
 
-div #search-box {
-    position: absolute;
-}
-
 div #showing-search-list {
     z-index: 99;
-    width: 171px;
-    position: relative;
+    width: 172.7px;
+    position: absolute;
+    background-color: #dddddd;
+}
+
+div #showing-search-list>p {
+    border: 1px solid #000000;
+    margin: 0px;
+    padding: 5px;
 }
 
 footer {

@@ -97,7 +97,7 @@ function SearchingTheItem() {
     let searchResults = [];
     for (let index = 0; index < AutopopulateData.length; ++index) {
         let searchResultValue = AutopopulateData[index].search(input.value);
-        if (searchResultValue > 0) {
+        if (searchResultValue != -1) {
             searchResults.push(AutopopulateData[index]);
         }
     }
@@ -106,12 +106,13 @@ function SearchingTheItem() {
         if (searchResults.length > index) {
             let node = document.createElement("p");
             let textnode = document.createTextNode(
-                searchResults[index].title
+                searchResults[index]
             );
             node.appendChild(textnode);
             document.getElementById("showing-search-list").appendChild(node);
         }
     }
+
 }
 
 function ShowClickerMenuOption(event) {
@@ -120,7 +121,7 @@ function ShowClickerMenuOption(event) {
     // This function will get the event in a browser-compatible way
     event = event || window.event;
     let target = event.target || event.srcElement;
-    ShowHiddenFunction(target.id + "-section");
+    ShowAndHideFunction(target.id + "-section");
 }
 
 function DeleteItemInList(el) {
