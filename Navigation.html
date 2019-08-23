@@ -8,28 +8,41 @@
 
 <body>
 
+    <header>HEADER</header>
 
-    <header>
-        <h1>
-            <center>HEADER</center>
-        </h1>
-    </header>
-
-    <div>
+    <div id="container">
         <div id="menu">
             <ul>
-                <li id="home-click" onclick="ShowClickerMenuOption(event)">Home</li>
-                <li id="user-click" onclick="ShowClickerMenuOption(event)">User</li>
-                <li id="demo-click" onclick="ShowClickerMenuOption(event)">Demo</li>
-                <li id="logout-click" onclick="ShowClickerMenuOption(event)">Logout</li>
+                <li id="home" onclick="ShowClickerMenuOption(event)">Home</li>
+                <li id="user" onclick="ShowClickerMenuOption(event)">User</li>
+                <li id="demo" onclick="ShowClickerMenuOption(event)">Demo</li>
+                <li id="logout" onclick="ShowClickerMenuOption(event)">Logout</li>
             </ul>
+        </div>
 
+
+
+
+        <div class="menu-item" id="home-section">
+            <div id="search-box">
+                <input type="text" id="myInputSearch" onkeyup="return SearchingTheItem()" placeholder="Search for item.." />
+                <button onclick="return AddItem();">Add</button>
+                <div id="showing-search-list"></div>
+            </div>
+            <ul id="showing-autopopulate-list"></ul>
 
         </div>
-        <div class="menu-item" id="home">abvcg</div>
-        <div class="menu-item" id="user">jsdgd</div>
-        <div class="menu-item" id="demo">shavjhVSjh</div>
-        <div class="menu-item" id="logout">hsdvjhgd</div>
+
+
+        <div class="menu-item" id="user-section">
+            <p>User Login</p>
+        </div>
+        <div class="menu-item" id="demo-section">
+            <p>Demo to front end</p>
+        </div>
+        <div class="menu-item" id="logout-section">
+            <p>User logout</p>
+        </div>
     </div>
 
     <footer>
@@ -37,7 +50,9 @@
             <center>FOOTER</center>
         </h1>
     </footer>
-    <script type="text/javascript" src="C:\Users\rmittal\Desktop\TAVISCA\FrontEndDevelopment\script.js"></script>
+    <script type="text/javascript" src="C:\Users\rmittal\Desktop\TAVISCA\FED_JS_2019\script.js"></script>
+    <script type="text/javascript" src="C:\Users\rmittal\Desktop\TAVISCA\FED_JS_2019\AutopopulateDataFile.js"></script>
+
 </body>
 
 </html>

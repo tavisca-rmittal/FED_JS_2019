@@ -1,7 +1,27 @@
-#menu {
-    height: 200px;
+header {
+    font-size: 40px;
+    padding: 20px 0px;
+    text-align: center;
+}
+
+body {
+    display: block;
+    margin: 0px;
+}
+
+div {
+    /*border: 1px solid #000000;*/
+    height: 100%;
+}
+
+div #container {
+    height: 300px;
+}
+
+div #menu {
+    height: 100%;
     background-color: #f1f1f1;
-    border: 1px solid #000000;
+    /*border: 1px solid #000000;*/
     float: left;
     position: relative;
     width: 30%;
@@ -9,12 +29,12 @@
 }
 
 div.menu-item {
-    border: 1px solid #000000;
+    /*border: 1px solid #000000;*/
     float: right;
     position: relative;
     width: 70%;
     box-sizing: border-box;
-    height: 50px;
+    height: 100%;
 }
 
 ul {
@@ -28,11 +48,21 @@ li {
     color: #000000;
     padding: 8px 16px;
     text-decoration: none;
+    cursor: pointer;
 }
 
-li a:hover {
+li:hover {
     background-color: #555;
     color: #ffffff;
+}
+
+div #search-box {
+    position: absolute;
+}
+
+div #showing-search-list {
+    z-index: 99;
+    width: 171px;
 }
 
 footer {
@@ -41,9 +71,5 @@ footer {
     bottom: 0px;
     text-align: center;
     width: 100%;
-}
-
-body {
-    display: block;
-    margin: 0px;
+    font-size: 40px;
 }
