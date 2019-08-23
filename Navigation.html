@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Navigation Task</title>
+    <link rel="stylesheet" type="text/css" href="navigationeffectbar.css">
+</head>
+
+<body>
+
+    <header>HEADER</header>
+
+    <div id="container">
+        <div id="menu">
+            <ul>
+                <li id="home" onclick="ShowClickerMenuOption(event)">Home</li>
+                <li id="user" onclick="ShowClickerMenuOption(event)">User</li>
+                <li id="demo" onclick="ShowClickerMenuOption(event)">Demo</li>
+                <li id="logout" onclick="ShowClickerMenuOption(event)">Logout</li>
+            </ul>
+        </div>
+
+
+
+
+        <div class="menu-item" id="home-section">
+            <div id="search-box" id="">
+                <input type="text" id="myInputSearch" onkeyup="return SearchingTheItem()" placeholder="Search for item.." />
+                <button onclick="return AddItem();">Add</button>
+                <div id="showing-search-list"></div>
+            </div>
+            <div id="showing-autopopulate-list"></div>
+
+        </div>
+
+
+        <div class="menu-item" id="user-section">
+            <p>User Login</p>
+        </div>
+        <div class="menu-item" id="demo-section">
+            <p>Demo to front end</p>
+        </div>
+        <div class="menu-item" id="logout-section">
+            <p>User logout</p>
+        </div>
+    </div>
+
+    <footer>
+        <h1>
+            <center>FOOTER</center>
+        </h1>
+    </footer>
+    <script type="text/javascript" src="C:\Users\rmittal\Desktop\TAVISCA\FED_JS_2019\script.js"></script>
+    <script type="text/javascript" src="C:\Users\rmittal\Desktop\TAVISCA\FED_JS_2019\AutopopulateDataFile.js"></script>
+
+</body>
+
+</html>
